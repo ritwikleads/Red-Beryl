@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronRight, ChevronLeft, Menu, X } from "lucide-react"
 import FaqDropdown from "@/components/faq-dropdown"
 import Link from "next/link"
@@ -9,6 +9,10 @@ const ResumeWebsite = () => {
   const [activeSection, setActiveSection] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [transitioning, setTransitioning] = useState(false)
+  const [swipeDirection, setSwipeDirection] = useState(null)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+  const minSwipeDistance = 50 // minimum distance required for a swipe to register
 
   // Navigation functions
   const goToSection = (index) => {
@@ -18,6 +22,7 @@ const ResumeWebsite = () => {
         setActiveSection(index)
         setTimeout(() => {
           setTransitioning(false)
+          setSwipeDirection(null) // Reset swipe direction after transition
         }, 400)
       }, 400)
     }
@@ -26,12 +31,14 @@ const ResumeWebsite = () => {
 
   const goToNextSection = () => {
     if (activeSection < sections.length - 1) {
+      setSwipeDirection("left")
       goToSection(activeSection + 1)
     }
   }
 
   const goToPrevSection = () => {
     if (activeSection > 0) {
+      setSwipeDirection("right")
       goToSection(activeSection - 1)
     }
   }
@@ -49,6 +56,36 @@ const ResumeWebsite = () => {
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [activeSection])
+
+  // Handle touch swipe navigation
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!transitioning) {
+      const swipeDistance = touchStartX.current - touchEndX.current
+      if (Math.abs(swipeDistance) > minSwipeDistance) {
+        if (swipeDistance > 0) {
+          // Swiped left - go to next section
+          if (activeSection < sections.length - 1) {
+            setSwipeDirection("left")
+            goToSection(activeSection + 1)
+          }
+        } else {
+          // Swiped right - go to previous section
+          if (activeSection > 0) {
+            setSwipeDirection("right")
+            goToSection(activeSection - 1)
+          }
+        }
+      }
+    }
+  }
 
   const sections = [
     {
@@ -550,8 +587,13 @@ const ResumeWebsite = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="relative w-full h-screen pt-16">
+      {/* Main Content with Touch Events */}
+      <div 
+        className="relative w-full h-screen pt-16"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {sections.map((section, index) => (
           <div
             key={index}
@@ -559,8 +601,12 @@ const ResumeWebsite = () => {
               activeSection === index
                 ? "opacity-100 translate-x-0"
                 : index < activeSection
-                  ? "opacity-0 -translate-x-full pointer-events-none"
-                  : "opacity-0 translate-x-full pointer-events-none"
+                  ? swipeDirection === "right" && index === activeSection - 1 
+                    ? "opacity-0 translate-x-full pointer-events-none" 
+                    : "opacity-0 -translate-x-full pointer-events-none"
+                  : swipeDirection === "left" && index === activeSection + 1 
+                    ? "opacity-0 -translate-x-full pointer-events-none" 
+                    : "opacity-0 translate-x-full pointer-events-none"
             } ${transitioning ? "pointer-events-none" : ""}`}
           >
             <div className="container min-h-full px-6 py-16 flex flex-col">
@@ -637,6 +683,11 @@ const ResumeWebsite = () => {
         ))}
       </div>
 
+      {/* Swipe indicator for mobile */}
+      <div className="md:hidden fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-gray-400 text-xs py-1 px-3 rounded-full backdrop-blur-sm opacity-70 pointer-events-none">
+        Swipe to navigate
+      </div>
+
       {/* Background decoration */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         {/* Dark red diagonal line */}
@@ -659,4 +710,3 @@ const ResumeWebsite = () => {
 }
 
 export default ResumeWebsite
-
