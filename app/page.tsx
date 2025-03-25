@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { ChevronLeft, Play, Maximize, X } from "lucide-react"
+import { ChevronLeft, Play, Maximize, X, ChevronRight } from "lucide-react"
 import Link from "next/link"
 
 const VideoPortfolio = () => {
@@ -76,8 +76,15 @@ const VideoPortfolio = () => {
   const [selectedVideo, setSelectedVideo] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
 
   const modalRef = useRef(null)
+  const swipeContainerRef = useRef(null)
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50
 
   // Get unique categories for filter
   const categories = ["All", ...new Set(portfolioItems.map((item) => item.category))]
@@ -93,8 +100,54 @@ const VideoPortfolio = () => {
 
   // Handle video selection
   const handleVideoSelect = (video) => {
+    const index = filteredItems.findIndex((item) => item.id === video.id)
+    setCurrentVideoIndex(index)
     setSelectedVideo(video)
     setIsPlaying(true)
+  }
+
+  // Navigate to next video
+  const navigateToNextVideo = () => {
+    if (currentVideoIndex < filteredItems.length - 1) {
+      const nextIndex = currentVideoIndex + 1
+      setCurrentVideoIndex(nextIndex)
+      setSelectedVideo(filteredItems[nextIndex])
+    }
+  }
+
+  // Navigate to previous video
+  const navigateToPrevVideo = () => {
+    if (currentVideoIndex > 0) {
+      const prevIndex = currentVideoIndex - 1
+      setCurrentVideoIndex(prevIndex)
+      setSelectedVideo(filteredItems[prevIndex])
+    }
+  }
+
+  // Handle touch start event
+  const handleTouchStart = (e) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch move event
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch end event
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    
+    if (isLeftSwipe) {
+      navigateToNextVideo()
+    }
+    if (isRightSwipe) {
+      navigateToPrevVideo()
+    }
   }
 
   // Close modal when clicking outside
@@ -134,9 +187,24 @@ const VideoPortfolio = () => {
       }
     }
 
+    const handleArrowKeys = (e) => {
+      if (selectedVideo) {
+        if (e.key === "ArrowRight") {
+          navigateToNextVideo()
+        } else if (e.key === "ArrowLeft") {
+          navigateToPrevVideo()
+        }
+      }
+    }
+
     window.addEventListener("keydown", handleEscKey)
-    return () => window.removeEventListener("keydown", handleEscKey)
-  }, [])
+    window.addEventListener("keydown", handleArrowKeys)
+    
+    return () => {
+      window.removeEventListener("keydown", handleEscKey)
+      window.removeEventListener("keydown", handleArrowKeys)
+    }
+  }, [selectedVideo, currentVideoIndex, filteredItems])
 
   return (
     <div
@@ -282,7 +350,35 @@ const VideoPortfolio = () => {
           <div
             ref={modalRef}
             className={`bg-black border border-red-900 relative ${isFullscreen ? "w-full h-full" : "max-w-4xl w-full"}`}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
+            {/* Navigation arrows */}
+            {!isFullscreen && (
+              <>
+                {currentVideoIndex > 0 && (
+                  <button 
+                    onClick={navigateToPrevVideo} 
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -ml-12 bg-red-900 bg-opacity-50 p-2 rounded-full z-10 hover:bg-opacity-70 transition-all md:flex hidden"
+                    aria-label="Previous video"
+                  >
+                    <ChevronLeft size={24} className="text-white" />
+                  </button>
+                )}
+                
+                {currentVideoIndex < filteredItems.length - 1 && (
+                  <button 
+                    onClick={navigateToNextVideo} 
+                    className="absolute right-0 top-1/2 -translate-y-1/2 -mr-12 bg-red-900 bg-opacity-50 p-2 rounded-full z-10 hover:bg-opacity-70 transition-all md:flex hidden"
+                    aria-label="Next video"
+                  >
+                    <ChevronRight size={24} className="text-white" />
+                  </button>
+                )}
+              </>
+            )}
+
             <div className="flex justify-between items-center p-4 border-b border-red-950">
               <h3 className="text-red-300 font-medium">{selectedVideo.title}</h3>
               <div className="flex gap-4">
@@ -313,6 +409,37 @@ const VideoPortfolio = () => {
                 <div className="flex justify-between text-xs text-gray-500 mt-4">
                   <span>Client: {selectedVideo.client}</span>
                   <span>Year: {selectedVideo.year}</span>
+                </div>
+                <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+                  <div className="flex items-center">
+                    {/* Swipe indicator for mobile */}
+                    <span className="hidden md:hidden text-xs">
+                      Swipe to navigate between videos
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <span>{currentVideoIndex + 1}/{filteredItems.length}</span>
+                    
+                    {/* Mobile navigation buttons */}
+                    <div className="flex gap-2 md:hidden">
+                      <button 
+                        onClick={navigateToPrevVideo} 
+                        className={`p-1 rounded ${currentVideoIndex > 0 ? 'text-red-300 hover:text-red-200' : 'text-gray-700 cursor-not-allowed'}`}
+                        disabled={currentVideoIndex === 0}
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+                      
+                      <button 
+                        onClick={navigateToNextVideo} 
+                        className={`p-1 rounded ${currentVideoIndex < filteredItems.length - 1 ? 'text-red-300 hover:text-red-200' : 'text-gray-700 cursor-not-allowed'}`}
+                        disabled={currentVideoIndex === filteredItems.length - 1}
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
