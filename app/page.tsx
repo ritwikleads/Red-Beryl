@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { ChevronRight, ChevronLeft, Menu, X } from "lucide-react"
 import FaqDropdown from "@/components/faq-dropdown"
 import Link from "next/link"
-import Image from "next/image"
 
 const ResumeWebsite = () => {
   const [activeSection, setActiveSection] = useState(0)
@@ -75,86 +74,71 @@ const ResumeWebsite = () => {
             <div className="absolute bottom-10 left-0 w-40 h-40 bg-red-900 rounded-full filter blur-3xl opacity-10 transform -translate-x-1/4"></div>
 
             {/* Main content with subtle animation */}
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-              {/* Profile Image - Added here */}
-              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-red-900 shadow-lg flex-shrink-0 mb-6 md:mb-0">
-                <Image 
-                  src="/profile-photo.jpg" 
-                  alt="Ritwik Singh" 
-                  width={192} 
-                  height={192}
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 ring-4 ring-red-700 ring-opacity-30 rounded-full"></div>
+            <div className="relative z-10">
+              <div className="mb-10 inline-block">
+                <span
+                  className="text-6xl text-red-500 opacity-20 absolute -top-8 -left-6"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  "
+                </span>
+                <p
+                  className="text-3xl md:text-4xl mb-8 leading-relaxed"
+                  style={{ fontFamily: "'Crimson Text', serif", lineHeight: "1.4" }}
+                >
+                  I'm <span className="text-red-300 font-semibold">Ritwik Singh</span>,
+                  <br className="hidden md:block" /> a Filmmaker and Marketer
+                  <br className="hidden md:block" /> with a passion for backend automation.
+                </p>
+                <span
+                  className="text-6xl text-red-500 opacity-20 absolute -bottom-10 -right-6"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  "
+                </span>
               </div>
 
-              <div>
-                <div className="mb-10 inline-block">
-                  <span
-                    className="text-6xl text-red-500 opacity-20 absolute -top-8 -left-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
-                    "
-                  </span>
-                  <p
-                    className="text-3xl md:text-4xl mb-8 leading-relaxed"
-                    style={{ fontFamily: "'Crimson Text', serif", lineHeight: "1.4" }}
-                  >
-                    I'm <span className="text-red-300 font-semibold">Ritwik Singh</span>,
-                    <br className="hidden md:block" /> a Filmmaker and Marketer
-                    <br className="hidden md:block" /> with a passion for backend automation.
-                  </p>
-                  <span
-                    className="text-6xl text-red-500 opacity-20 absolute -bottom-10 -right-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
-                    "
-                  </span>
-                </div>
+              <div className="w-24 h-px bg-gradient-to-r from-red-800 to-transparent my-8"></div>
 
-                <div className="w-24 h-px bg-gradient-to-r from-red-800 to-transparent my-8"></div>
+              <div className="relative pl-5 border-l-2 border-red-900 mt-12">
+                <p
+                  className="text-xl text-gray-300"
+                  style={{ fontFamily: "'Crimson Text', serif", lineHeight: "1.6", fontStyle: "italic" }}
+                >
+                  With this unique blend of skills, I bridge the gap between
+                  <span className="relative inline-block mx-1">
+                    <span className="text-red-300">cinematic vision</span>
+                    <span className="absolute bottom-0 left-0 w-full h-px bg-red-800 opacity-40"></span>
+                  </span>
+                  and
+                  <span className="relative inline-block mx-1">
+                    <span className="text-red-300">data-driven results</span>
+                    <span className="absolute bottom-0 left-0 w-full h-px bg-red-800 opacity-40"></span>
+                  </span>
+                  —transforming creative concepts into measurable business outcomes.
+                </p>
+              </div>
 
-                <div className="relative pl-5 border-l-2 border-red-900 mt-12">
-                  <p
-                    className="text-xl text-gray-300"
-                    style={{ fontFamily: "'Crimson Text', serif", lineHeight: "1.6", fontStyle: "italic" }}
-                  >
-                    With this unique blend of skills, I bridge the gap between
-                    <span className="relative inline-block mx-1">
-                      <span className="text-red-300">cinematic vision</span>
-                      <span className="absolute bottom-0 left-0 w-full h-px bg-red-800 opacity-40"></span>
-                    </span>
-                    and
-                    <span className="relative inline-block mx-1">
-                      <span className="text-red-300">data-driven results</span>
-                      <span className="absolute bottom-0 left-0 w-full h-px bg-red-800 opacity-40"></span>
-                    </span>
-                    —transforming creative concepts into measurable business outcomes.
-                  </p>
-                </div>
-
-                {/* Skill badges */}
-                <div className="flex flex-wrap gap-3 mt-12">
-                  <span
-                    className="bg-red-950 bg-opacity-30 border border-red-900 border-opacity-40 px-3 py-1 text-sm rounded text-red-200"
-                    style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.05em" }}
-                  >
-                    Filmmaker
-                  </span>
-                  <span
-                    className="bg-red-950 bg-opacity-30 border border-red-900 border-opacity-40 px-3 py-1 text-sm rounded text-red-200"
-                    style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.05em" }}
-                  >
-                    Marketer
-                  </span>
-                  <span
-                    className="bg-red-950 bg-opacity-30 border border-red-900 border-opacity-40 px-3 py-1 text-sm rounded text-red-200"
-                    style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.05em" }}
-                  >
-                    Automation
-                  </span>
-                </div>
+              {/* Skill badges */}
+              <div className="flex flex-wrap gap-3 mt-12">
+                <span
+                  className="bg-red-950 bg-opacity-30 border border-red-900 border-opacity-40 px-3 py-1 text-sm rounded text-red-200"
+                  style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.05em" }}
+                >
+                  Filmmaker
+                </span>
+                <span
+                  className="bg-red-950 bg-opacity-30 border border-red-900 border-opacity-40 px-3 py-1 text-sm rounded text-red-200"
+                  style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.05em" }}
+                >
+                  Marketer
+                </span>
+                <span
+                  className="bg-red-950 bg-opacity-30 border border-red-900 border-opacity-40 px-3 py-1 text-sm rounded text-red-200"
+                  style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.05em" }}
+                >
+                  Automation
+                </span>
               </div>
             </div>
           </div>
