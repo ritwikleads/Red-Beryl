@@ -479,6 +479,97 @@ const ResumeWebsite = () => {
       ),
       icon: "06",
     },
+    {
+      title: "How I Can Be Useful to RedBeryl",
+      content: (
+        <>
+          <h3
+            className="text-2xl font-normal mb-6 text-red-300"
+            style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
+          >
+            Enhancing Luxury Membership Experiences
+          </h3>
+          <p className="mb-8">
+            As a filmmaker, marketer, and automation specialist, I can enhance RedBeryl's luxury membership experience through:
+          </p>
+
+          <div className="space-y-12 my-10">
+            <div className="flex items-start">
+              <div className="mr-6">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-900 bg-opacity-30 border border-red-800">
+                  <span className="text-red-400 font-bold" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                    01
+                  </span>
+                </div>
+                <div className="h-full w-px bg-gradient-to-b from-red-800 to-transparent mx-auto my-2 opacity-30"></div>
+              </div>
+              <div>
+                <h4
+                  className="text-xl font-medium text-red-300 mb-3"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Cinematic Brand Storytelling
+                </h4>
+                <p className="text-gray-300">
+                  I can create premium video content that captures the essence of RedBeryl's exclusive experiences—from private opera screenings to after-hours access at the Pyramids of Giza. My filmmaking approach preserves narrative integrity while communicating the unparalleled luxury that defines the RedBeryl brand.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start">
+              <div className="mr-6">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-900 bg-opacity-30 border border-red-800">
+                  <span className="text-red-400 font-bold" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                    02
+                  </span>
+                </div>
+                <div className="h-full w-px bg-gradient-to-b from-red-800 to-transparent mx-auto my-2 opacity-30"></div>
+              </div>
+              <div>
+                <h4
+                  className="text-xl font-medium text-red-300 mb-3"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Targeted Member Acquisition
+                </h4>
+                <p className="text-gray-300">
+                  My expertise in Facebook and YouTube advertising can help RedBeryl connect with qualified ultra-high-net-worth individuals through precision targeting. I can design campaigns that maintain RedBeryl's exclusivity while expanding awareness among ideal potential members, generating a steady pipeline of vetted applicants for your invitation-only membership.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start">
+              <div className="mr-6">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-900 bg-opacity-30 border border-red-800">
+                  <span className="text-red-400 font-bold" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                    03
+                  </span>
+                </div>
+              </div>
+              <div>
+                <h4
+                  className="text-xl font-medium text-red-300 mb-3"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Automated Member Journey Enhancement
+                </h4>
+                <p className="text-gray-300">
+                  Using n8n, I can create sophisticated automation systems that complement your 24/7 concierge service and dedicated relationship managers. These systems can deliver personalized communications based on member preferences, streamline request fulfillment, and ensure seamless coordination between your Dream Weavers and service providers—all while maintaining the human touch that defines luxury service.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative mt-10 mb-8">
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-red-900 to-transparent opacity-30 mb-8"></div>
+            <p className="text-lg border-l-2 border-red-800 pl-4 italic text-gray-300">
+              The integration of these three elements creates a cohesive strategy that elevates RedBeryl's already exceptional member experience while operating with maximum efficiency behind the scenes. I understand that in the world of luxury lifestyle management, flawless execution is paramount, and my combined skillset is uniquely positioned to support RedBeryl's commitment to turning the impossible into reality.
+            </p>
+          </div>
+        </>
+      ),
+      icon: "07",
+    },
   ]
 
   return (
@@ -659,4 +750,3 @@ const ResumeWebsite = () => {
 }
 
 export default ResumeWebsite
-
