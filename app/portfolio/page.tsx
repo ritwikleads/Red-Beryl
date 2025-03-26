@@ -9,76 +9,67 @@ const VideoPortfolio = () => {
   const portfolioItems = [
     {
       id: 1,
-      title: "Brand Campaign: Azora Fashion",
-      description: "A cinematic brand story that captures the essence of Azora's unique style and vision.",
+      title: "The Ekaanta Film",
+      description: "A cinematic journey through the luxurious Ekaanta wellness resort in Haridwar, showcasing its serene ambiance and rejuvenating experiences.",
       youtubeId: "PiIJj8T_ZcM", 
       thumbnail: "https://img.youtube.com/vi/PiIJj8T_ZcM/maxresdefault.jpg",
-      client: "Wear Azora",
-      year: "2023",
+      client: "Ekaanta Minversity"
     },
     {
       id: 2,
-      title: "Product Launch: Summer Collection",
-      description: "Showcasing the vibrant new summer collection through a narrative-driven visual experience.",
+      title: "Pullman Aerocity Advertisement",
+      description: "An immersive visual narrative highlighting the premium spa experience at Pullman, designed to entice guests with its world-class relaxation treatments.",
       youtubeId: "8GQzGMv_oPY", 
       thumbnail: "https://img.youtube.com/vi/8GQzGMv_oPY/maxresdefault.jpg",
-      client: "Lifestyle Brand",
-      year: "2023",
+      client: "Pullman Hotel, Aerocity"
     },
     {
       id: 3,
-      title: "Promotional Campaign: Sales Event",
-      description:
-        "An energetic promotional video highlighting limited-time offers while maintaining brand aesthetics.",
+      title: "Tour de Art at Pullman",
+      description: "An elegant showcase of the prestigious Tour de Art exhibition held at Pullman, capturing the intersection of hospitality and artistic expression.",
       youtubeId: "QiYrqeVXGRE", 
       thumbnail: "https://img.youtube.com/vi/QiYrqeVXGRE/maxresdefault.jpg",
-      client: "Retail Client",
-      year: "2022",
+      client: "Pullman Hotel, Aerocity"
     },
     {
       id: 4,
-      title: "Behind the Scenes: Production Process",
-      description: "A documentary-style look at our meticulous approach to creating high-quality content.",
+      title: "Made in Smoke Lab",
+      description: "Intimate confessions of a master mixologist revealing the artistry behind creating signature cocktails using Smoke Lab vodka.",
       youtubeId: "-n6xsZ320Vo", 
       thumbnail: "https://img.youtube.com/vi/-n6xsZ320Vo/maxresdefault.jpg",
-      client: "Internal Production",
-      year: "2022",
+      client: "Smoke Lab Vodka"
     },
     {
       id: 5,
-      title: "Brand Story: Company Origins",
-      description: "Telling the founder's journey and the evolution of the brand through cinematic storytelling.",
+      title: "Digital Jalebi Brand Film",
+      description: "A compelling corporate communication piece showcasing the innovative approach and creative philosophy of Digital Jalebi studios.",
       youtubeId: "LKsoF0NVzGs", 
       thumbnail: "https://img.youtube.com/vi/LKsoF0NVzGs/maxresdefault.jpg",
-      client: "Tech Startup",
-      year: "2023",
+      client: "Digital Jalebi"
     },
     {
       id: 6,
-      title: "Social Media Series: Quick Tips",
-      description: "A series of short, engaging videos designed specifically for social media consumption.",
+      title: "Tiber Taber: The Story",
+      description: "An authentic brand narrative featuring the founders of Tiber Taber sharing their vision, inspiration, and creative journey.",
       youtubeId: "bShDiyE1U9M", 
       thumbnail: "https://img.youtube.com/vi/bShDiyE1U9M/maxresdefault.jpg",
-      client: "Educational Platform",
-      year: "2023",
+      client: "Tiber Taber Clothing"
     },
     {
       id: 7,
-      title: "Corporate Overview: Vision & Mission",
-      description: "An inspiring presentation of our corporate values and future direction.",
+      title: "Chasma AD",
+      description: "An engaging campaign video highlighting the unique offerings and customer experience of the premier eyewear platform.",
       youtubeId: "Z-A6oX5VT5s", 
       thumbnail: "https://img.youtube.com/vi/Z-A6oX5VT5s/maxresdefault.jpg",
-      client: "Corporate Client",
-      year: "2023",
+      client: "Chasma.com"
     },
     {
       id: 8,
-      title: "Event Coverage: Annual Conference",
-      description: "Comprehensive coverage of industry-leading annual event.",
+      title: "DJ X IIAD",
+      description: "A dynamic admissions campaign showcasing educational opportunities and creative pathways at the prestigious design institute.",
       youtubeId: "dYAMPpykukk", 
       thumbnail: "https://img.youtube.com/vi/dYAMPpykukk/maxresdefault.jpg",
-      client: "Event Organizer",
-      year: "2022",
+      client: "IIAD"
     },
   ]
 
@@ -237,9 +228,8 @@ const VideoPortfolio = () => {
                 </h3>
                 <p className="text-gray-400 text-sm mb-4">{item.description}</p>
 
-                <div className="flex justify-between text-xs text-gray-500 mt-6 pt-4 border-t border-red-950 border-opacity-30">
+                <div className="flex justify-center text-xs text-gray-500 mt-6 pt-4 border-t border-red-950 border-opacity-30">
                   <span>{item.client}</span>
-                  <span>{item.year}</span>
                 </div>
               </div>
             </div>
@@ -281,9 +271,8 @@ const VideoPortfolio = () => {
             {!isFullscreen && (
               <div className="p-4 border-t border-red-950">
                 <p className="text-gray-400 text-sm">{selectedVideo.description}</p>
-                <div className="flex justify-between text-xs text-gray-500 mt-4">
+                <div className="flex justify-center text-xs text-gray-500 mt-4">
                   <span>Client: {selectedVideo.client}</span>
-                  <span>Year: {selectedVideo.year}</span>
                 </div>
               </div>
             )}
