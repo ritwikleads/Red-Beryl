@@ -642,7 +642,7 @@ const ResumeWebsite = () => {
       </nav>
 
       {/* Main Content */}
-      <div className="relative w-full h-screen pt-16">
+      <div className="relative w-full h-screen pt-16 pb-24 md:pb-0">
         {sections.map((section, index) => (
           <div
             key={index}
@@ -682,8 +682,8 @@ const ResumeWebsite = () => {
                 </div>
               </div>
 
-              {/* Navigation controls */}
-              <div className="flex justify-between items-center mt-12 mb-4 max-w-3xl mx-auto w-full pt-8 sticky bottom-0 bg-black bg-opacity-80 backdrop-blur-sm py-4 border-t border-red-950">
+              {/* Desktop Navigation controls (hidden on mobile) */}
+              <div className="hidden md:flex justify-between items-center mt-12 mb-4 max-w-3xl mx-auto w-full pt-8 sticky bottom-0 bg-black bg-opacity-80 backdrop-blur-sm py-4 border-t border-red-950">
                 <button
                   onClick={goToPrevSection}
                   className={`flex items-center space-x-2 text-sm uppercase tracking-widest transition-colors ${
@@ -726,6 +726,48 @@ const ResumeWebsite = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Fixed Mobile Navigation Bar (only visible on mobile) */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-black bg-opacity-90 backdrop-blur-md border-t border-red-950 z-50">
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <button
+            onClick={goToPrevSection}
+            className={`flex items-center justify-center rounded-full w-12 h-12 ${
+              activeSection > 0 
+                ? "bg-red-950 text-red-300 hover:bg-red-900 hover:text-red-200" 
+                : "bg-gray-900 text-gray-700 cursor-not-allowed"
+            }`}
+            disabled={activeSection === 0}
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <div className="flex space-x-1">
+            {sections.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToSection(i)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  i === activeSection ? "bg-red-700 scale-125" : "bg-gray-800"
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={goToNextSection}
+            className={`flex items-center justify-center rounded-full w-12 h-12 ${
+              activeSection < sections.length - 1 
+                ? "bg-red-950 text-red-300 hover:bg-red-900 hover:text-red-200" 
+                : "bg-gray-900 text-gray-700 cursor-not-allowed"
+            }`}
+            disabled={activeSection === sections.length - 1}
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
 
       {/* Background decoration */}
