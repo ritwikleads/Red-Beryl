@@ -12,7 +12,7 @@ const VideoPortfolio = () => {
       title: "Brand Campaign: Azora Fashion",
       description: "A cinematic brand story that captures the essence of Azora's unique style and vision.",
       youtubeId: "PiIJj8T_ZcM", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/PiIJj8T_ZcM/maxresdefault.jpg",
       client: "Wear Azora",
       year: "2023",
     },
@@ -21,7 +21,7 @@ const VideoPortfolio = () => {
       title: "Product Launch: Summer Collection",
       description: "Showcasing the vibrant new summer collection through a narrative-driven visual experience.",
       youtubeId: "8GQzGMv_oPY", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/8GQzGMv_oPY/maxresdefault.jpg",
       client: "Lifestyle Brand",
       year: "2023",
     },
@@ -31,7 +31,7 @@ const VideoPortfolio = () => {
       description:
         "An energetic promotional video highlighting limited-time offers while maintaining brand aesthetics.",
       youtubeId: "QiYrqeVXGRE", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/QiYrqeVXGRE/maxresdefault.jpg",
       client: "Retail Client",
       year: "2022",
     },
@@ -40,7 +40,7 @@ const VideoPortfolio = () => {
       title: "Behind the Scenes: Production Process",
       description: "A documentary-style look at our meticulous approach to creating high-quality content.",
       youtubeId: "-n6xsZ320Vo", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/-n6xsZ320Vo/maxresdefault.jpg",
       client: "Internal Production",
       year: "2022",
     },
@@ -49,7 +49,7 @@ const VideoPortfolio = () => {
       title: "Brand Story: Company Origins",
       description: "Telling the founder's journey and the evolution of the brand through cinematic storytelling.",
       youtubeId: "LKsoF0NVzGs", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/LKsoF0NVzGs/maxresdefault.jpg",
       client: "Tech Startup",
       year: "2023",
     },
@@ -58,7 +58,7 @@ const VideoPortfolio = () => {
       title: "Social Media Series: Quick Tips",
       description: "A series of short, engaging videos designed specifically for social media consumption.",
       youtubeId: "bShDiyE1U9M", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/bShDiyE1U9M/maxresdefault.jpg",
       client: "Educational Platform",
       year: "2023",
     },
@@ -67,7 +67,7 @@ const VideoPortfolio = () => {
       title: "Corporate Overview: Vision & Mission",
       description: "An inspiring presentation of our corporate values and future direction.",
       youtubeId: "Z-A6oX5VT5s", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/Z-A6oX5VT5s/maxresdefault.jpg",
       client: "Corporate Client",
       year: "2023",
     },
@@ -76,7 +76,7 @@ const VideoPortfolio = () => {
       title: "Event Coverage: Annual Conference",
       description: "Comprehensive coverage of industry-leading annual event.",
       youtubeId: "dYAMPpykukk", 
-      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      thumbnail: "https://img.youtube.com/vi/dYAMPpykukk/maxresdefault.jpg",
       client: "Event Organizer",
       year: "2022",
     },
