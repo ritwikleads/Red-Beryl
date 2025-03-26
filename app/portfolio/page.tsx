@@ -11,8 +11,8 @@ const VideoPortfolio = () => {
       id: 1,
       title: "The Ekaanta Film",
       description: "A cinematic journey through the luxurious Ekaanta wellness resort in Haridwar, showcasing its serene ambiance and rejuvenating experiences.",
-      youtubeId: "PiIJj8T_ZcM", 
-      thumbnail: "https://img.youtube.com/vi/PiIJj8T_ZcM/maxresdefault.jpg",
+      youtubeId: "lwAcrSli6LU", 
+      thumbnail: "https://img.youtube.com/vi/lwAcrSli6LU/maxresdefault.jpg",
       client: "Ekaanta Minversity"
     },
     {
@@ -259,7 +259,7 @@ const VideoPortfolio = () => {
             <div className={`aspect-video ${isFullscreen ? "h-[calc(100%-56px)]" : ""} bg-black`}>
               {isPlaying && (
                 <iframe
-                  src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&modestbranding=1&rel=0`}
+                  src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&modestbranding=1&rel=0&vq=hd720`}
                   className="w-full h-full"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
