@@ -5,14 +5,13 @@ import { ChevronLeft, Play, Maximize, X } from "lucide-react"
 import Link from "next/link"
 
 const VideoPortfolio = () => {
-  // Sample portfolio data - replace with your actual Vimeo videos
+  // Updated portfolio data with YouTube videos
   const portfolioItems = [
     {
       id: 1,
       title: "Brand Campaign: Azora Fashion",
       description: "A cinematic brand story that captures the essence of Azora's unique style and vision.",
-      category: "Commercial",
-      vimeoId: "123456789", // Replace with your actual Vimeo ID
+      youtubeId: "PiIJj8T_ZcM", 
       thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
       client: "Wear Azora",
       year: "2023",
@@ -21,8 +20,7 @@ const VideoPortfolio = () => {
       id: 2,
       title: "Product Launch: Summer Collection",
       description: "Showcasing the vibrant new summer collection through a narrative-driven visual experience.",
-      category: "Product",
-      vimeoId: "987654321", // Replace with your actual Vimeo ID
+      youtubeId: "8GQzGMv_oPY", 
       thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
       client: "Lifestyle Brand",
       year: "2023",
@@ -32,8 +30,7 @@ const VideoPortfolio = () => {
       title: "Promotional Campaign: Sales Event",
       description:
         "An energetic promotional video highlighting limited-time offers while maintaining brand aesthetics.",
-      category: "Promotional",
-      vimeoId: "567891234", // Replace with your actual Vimeo ID
+      youtubeId: "QiYrqeVXGRE", 
       thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
       client: "Retail Client",
       year: "2022",
@@ -42,8 +39,7 @@ const VideoPortfolio = () => {
       id: 4,
       title: "Behind the Scenes: Production Process",
       description: "A documentary-style look at our meticulous approach to creating high-quality content.",
-      category: "Documentary",
-      vimeoId: "345678912", // Replace with your actual Vimeo ID
+      youtubeId: "-n6xsZ320Vo", 
       thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
       client: "Internal Production",
       year: "2022",
@@ -52,8 +48,7 @@ const VideoPortfolio = () => {
       id: 5,
       title: "Brand Story: Company Origins",
       description: "Telling the founder's journey and the evolution of the brand through cinematic storytelling.",
-      category: "Brand Story",
-      vimeoId: "234567891", // Replace with your actual Vimeo ID
+      youtubeId: "LKsoF0NVzGs", 
       thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
       client: "Tech Startup",
       year: "2023",
@@ -62,34 +57,37 @@ const VideoPortfolio = () => {
       id: 6,
       title: "Social Media Series: Quick Tips",
       description: "A series of short, engaging videos designed specifically for social media consumption.",
-      category: "Social Media",
-      vimeoId: "891234567", // Replace with your actual Vimeo ID
+      youtubeId: "bShDiyE1U9M", 
       thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
       client: "Educational Platform",
       year: "2023",
     },
+    {
+      id: 7,
+      title: "Corporate Overview: Vision & Mission",
+      description: "An inspiring presentation of our corporate values and future direction.",
+      youtubeId: "Z-A6oX5VT5s", 
+      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      client: "Corporate Client",
+      year: "2023",
+    },
+    {
+      id: 8,
+      title: "Event Coverage: Annual Conference",
+      description: "Comprehensive coverage of industry-leading annual event.",
+      youtubeId: "dYAMPpykukk", 
+      thumbnail: "/placeholder.svg?height=360&width=640", // This will be replaced with your video thumbnail
+      client: "Event Organizer",
+      year: "2022",
+    },
   ]
 
   // State management
-  const [activeCategory, setActiveCategory] = useState("All")
-  const [filteredItems, setFilteredItems] = useState(portfolioItems)
   const [selectedVideo, setSelectedVideo] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
   const modalRef = useRef(null)
-
-  // Get unique categories for filter
-  const categories = ["All", ...new Set(portfolioItems.map((item) => item.category))]
-
-  // Filter videos by category
-  useEffect(() => {
-    if (activeCategory === "All") {
-      setFilteredItems(portfolioItems)
-    } else {
-      setFilteredItems(portfolioItems.filter((item) => item.category === activeCategory))
-    }
-  }, [activeCategory])
 
   // Handle video selection
   const handleVideoSelect = (video) => {
@@ -200,31 +198,13 @@ const VideoPortfolio = () => {
               </p>
             </div>
           </div>
-
-          {/* Category Filters */}
-          <div className="flex flex-wrap gap-4 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 text-sm rounded transition-all ${
-                  activeCategory === category
-                    ? "bg-red-900 bg-opacity-50 text-red-200 border border-red-800"
-                    : "bg-black bg-opacity-40 text-gray-400 border border-gray-800 hover:border-red-900 hover:text-red-300"
-                }`}
-                style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.05em" }}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
       {/* Portfolio Grid */}
       <div className="container mx-auto px-6 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
+          {portfolioItems.map((item) => (
             <div
               key={item.id}
               className="group bg-black bg-opacity-40 border border-red-950 border-opacity-40 hover:border-red-900 transition-all overflow-hidden rounded-sm"
@@ -245,15 +225,6 @@ const VideoPortfolio = () => {
                       <Play size={24} className="text-white ml-1" />
                     </button>
                   </div>
-                </div>
-
-                <div className="absolute top-4 left-4">
-                  <span
-                    className="bg-red-950 bg-opacity-80 text-red-200 px-2 py-1 text-xs"
-                    style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "0.1em" }}
-                  >
-                    {item.category}
-                  </span>
                 </div>
               </div>
 
@@ -298,10 +269,10 @@ const VideoPortfolio = () => {
             <div className={`aspect-video ${isFullscreen ? "h-[calc(100%-56px)]" : ""} bg-black`}>
               {isPlaying && (
                 <iframe
-                  src={`https://player.vimeo.com/video/${selectedVideo.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+                  src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&modestbranding=1&rel=0`}
                   className="w-full h-full"
                   frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 ></iframe>
               )}
@@ -342,4 +313,3 @@ const VideoPortfolio = () => {
 }
 
 export default VideoPortfolio
-
